@@ -3,14 +3,14 @@
 Dự án này là phiên bản đã sửa đổi thực hiện tóm tắt video dựa trên phương pháp học không giám sát dựa trên phương pháp gốc [TAC-SUM](https://github.com/hcmus-thesis-gulu/TAC-SUM/tree/main) (Temporal-Aware Cluster-based SUMmarization) đã được cấp phép theo Giấy phép MIT và thể hiện kết quả F-measure avg có được cao hơn phương pháp gốc sau khi cải tiến cách tính điểm khung hình quan trọng.
 
 ## Cài đặt môi trường
-1. **Tạo và kích hoạt môi trường Conda**:
+1. **Tạo và kích hoạt môi trường ảo Conda**:
     ```bash
     conda create -n vidsum python=3.10 -y
     conda activate vidsum
 2. **Clone repository và chuyển vào thư mục dự án**:
    ```bash
-   git clone <URL_repo>
-   cd <tên_thư_mục_repo>
+   git clone https://github.com/sytanl/Video_Summarization_based_on_Unsupervised_Learning_Project-CV_HCMUS.git
+   cd Video_Summarization_based_on_Unsupervised_Learning_Project-CV_HCMUS
 3. **Cài đặt các thư viện cần thiết:**:
     ```bash
     pip install -r requirements.txt
