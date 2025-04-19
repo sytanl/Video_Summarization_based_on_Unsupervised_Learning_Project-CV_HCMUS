@@ -1,6 +1,6 @@
 # Video Summarization based on Unsupervised Learning
 
-Dự án này là phiên bản đã sửa đổi thực hiện tóm tắt video dựa trên phương pháp học không giám sát dựa trên phương pháp gốc [TAC-SUM](https://github.com/hcmus-thesis-gulu/TAC-SUM/tree/main) (Temporal-Aware Cluster-based SUMmarization) đã được cấp phép theo Giấy phép MIT và thể hiện kết quả F-measure avg có được cao hơn phương pháp gốc sau khi cải tiến cách tính điểm khung hình quan trọng.
+Dự án này là phiên bản đã sửa đổi thực hiện tóm tắt video dựa trên phương pháp học không giám sát dựa trên phương pháp gốc [TAC-SUM](https://github.com/hcmus-thesis-gulu/TAC-SUM/tree/main) (Temporal-Aware Cluster-based SUMmarization) và thể hiện kết quả F-measure avg có được cao hơn phương pháp gốc sau khi cải tiến cách tính điểm khung hình quan trọng.
 
 ## Cài đặt môi trường
 1. **Tạo và kích hoạt môi trường ảo Conda**:
