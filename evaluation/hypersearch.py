@@ -5,7 +5,7 @@ import numpy as np
 
 from evaluation import evaluateSummaries, testSummaries
 
-
+# In kết quả của từng tổ hợp tham số coef, expand, fill_mode, cùng với F-measure (max, avg, top-5).
 def print_result(coef, expand, fill_mode, score, idx=None):
     expansion = f"{expand:.2f}" if expand < 1 else f"{int(expand)}"
     param = f"coef={coef:.2f}, expand={expansion}"
@@ -47,10 +47,12 @@ def search():
                         choices=['frame', 'fragment', 'shot'],
                         help='Evaluation mode: "frame", "fragment" or "shot"')
     
+    # Hệ số tối thiểu, tối đa và bước nhảy cho việc mở rộng keyframe
     parser.add_argument('--min-coef', type=float, default=1.0)
     parser.add_argument('--max-coef', type=float, default=5.0)
     parser.add_argument('--iter-coef', type=float, default=0.5)
     
+    # Tối thiểu, tối đa và bước nhảy số lượng frame cần mở rộng quanh keyframe
     parser.add_argument('--min-expand', type=float,
                         help='Int: Minimum number of frames to expand'
                         + '0 < Float < 1: Minimum percentage of selection')
@@ -65,12 +67,15 @@ def search():
     fill_modes = ['linear', 'nearest', 'nearest-up']
     search_results = []
     
+    # Duyệt qua các giá trị của coef để thử nghiệm
     for coef in np.arange(args.min_coef,
                           args.max_coef + (args.iter_coef / 2),
                           args.iter_coef):
+        # Duyệt qua các giá trị của expand để thử nghiệm
         for expand in np.arange(args.min_expand,
                                 args.max_expand + (args.iter_expand / 2),
                                 args.iter_expand):
+            # Nếu chế độ đánh giá là 'shot', thử tất cả các giá trị fill_mode
             if args.mode == 'shot':
                 for fill_mode in fill_modes:
                     score = testSummaries(groundtruth_folder=args.groundtruth_folder,
@@ -82,6 +87,7 @@ def search():
                                           expand=expand
                                           )
                     
+                    # Lưu kết quả tạm thời cho tổ hợp tham số này
                     search_result = {
                         'coef': float(coef),
                         'expand': float(expand),
