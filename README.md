@@ -57,7 +57,7 @@ Dự án này là phiên bản đã sửa đổi thực hiện tóm tắt video 
 > - `Test/contexts_base`: Thư mục contexts đã được tạo sẵn
 > - `Test/summaries_0`: Thư mục summaries đã được tạo sẵn khi chạy file `infer.sh` với tham số k = 0.
 > - `Test/summaries_8`: Thư mục summaries đã được tạo sẵn khi chạy file `infer.sh` với tham số k =8.
-6. **Thực hiện chạy Notebook để tìm điểm F-measure avg cao nhất thông qua hypersearch**.
+6. **Thực hiện chạy Notebook `run_evaluation.ipynb` để tìm điểm F-measure avg cao nhất thông qua hypersearch**.
 * **Chạy ô notebook đầu tiên**: Sau khi đã chạy xong file `preprocess.sh` và `infer.sh` để tạo folder summaries trong thư mục Test, chạy ô notebook đầu tiên để thấy kết quả F-measure avg.
 * **Ô notebook thứ hai**: ô này chạy như ô đầu tiên nhưng chỉ khác ở chỗ sử dụng folder summaries_0 đã được tạo từ trước khi chạy file `infer.sh` với tham số k = 0 (tính điểm frame theo công thức phương pháp TAC-SUM ban đầu), ô này đã được chạy sẵn và kết quả chạy được hiện ở dưới ô.
 * **Ô notebook thứ ba**: ô này chạy như ô đầu tiên nhưng chỉ khác ở chỗ sử dụng folder summaries_8 đã được tạo từ trước khi chạy file `infer.sh` với tham số k = 8 (cho kết quả F-measure avg cao nhất), ô này đã được chạy sẵn và kết quả chạy được hiện ở dưới ô.
