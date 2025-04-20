@@ -9,12 +9,19 @@ fi
 # Tạo thư mục lưu kết quả tóm tắt bên trong thư mục output
 mkdir -p "$2/summaries"
 
-# Chạy script summarization.py để tạo video tóm tắt dựa trên kết quả embedding và phân đoạn ngữ nghĩa trước đó
+# Chạy script summarization.py để tạo video tóm tắt dựa trên kết quả embedding và phân đoạn ngữ nghĩa trước đó, trong đó:
+# embedding-folder là thư mục chứa các embedding đã trích xuất
+# context-folder là thư mục chứa thông tin ngữ cảnh đã phân đoạn
+# summary-folder là thư mục để lưu điểm của các frame của video
+# reduced-emb là biến boolean có sử dụng version rút gọn của embedding (đã giảm chiều trước đó)
+# scoring-mode là cách chấm điểm quan trọng cho các đoạn video: phân phối đều (uniform)
+# kf-mode là cách chọn keyframe: chọn frame giữa và 2 frame đầu/cuối của mỗi đoạn
+# k là tham số điều chỉnh công thức tính điểm cho frame
 python scripts/summarization.py \
---embedding-folder "$2/embeddings" \         # Thư mục chứa các embedding đã trích xuất
---context-folder "$2/contexts" \             # Thư mục chứa thông tin ngữ cảnh đã phân đoạn
---summary-folder "$2/summaries" \            # Thư mục để lưu điểm của các frame của video
---reduced-emb \                              # Sử dụng version rút gọn của embedding (đã giảm chiều trước đó)
---scoring-mode "uniform" \                   # Cách chấm điểm quan trọng cho các đoạn video: phân phối đều (uniform)
---kf-mode "middle ends" \                    # Cách chọn keyframe: chọn frame giữa và 2 frame đầu/cuối của mỗi đoạn
---k 8                                        # Tham số điều chỉnh công thức tính điểm cho frame
+    --embedding-folder "$2/embeddings" \
+    --context-folder "$2/contexts" \
+    --summary-folder "$2/summaries" \
+    --reduced-emb \
+    --scoring-mode "uniform" \
+    --kf-mode "middle ends" \
+    --k 8

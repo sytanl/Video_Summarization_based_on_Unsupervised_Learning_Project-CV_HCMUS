@@ -13,7 +13,7 @@ def localize_context(embeddings, method, n_clusters, window_size,
                      min_seg_length, distance, embedding_dim, intermediate_components=50, final_reducer='tsne'):
     clusterer = Clusterer(method, distance, n_clusters, embedding_dim, intermediate_components, final_reducer=final_reducer)
     selector = Selector(window_size, min_seg_length)
-    labels, reduced_embeddings = clusterer.cluster(embeddings)  # Thực hiện phân cụm
+    labels, reduced_embeddings = clusterer.cluster(embeddings, flag=False)  # Thực hiện phân cụm
     return (labels, selector.select(labels),  # Chọn các đoạn (segments)
             clusterer.num_clusters, reduced_embeddings)  # Trả về số lượng cụm và các embedding giảm chiều
 

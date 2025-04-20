@@ -73,7 +73,7 @@ Chạy file `create_summarized_video.py` để tạo video tóm tắt từ tên 
     python create_summarized_video.py "Air_Force_One.mp4"
 * Ví dụ tóm tắt nhiều video:
     ```bash
-    python create_summarized_video.py "Air_Force_One.mp4" "Cooking.mp4" "Scuba.mp4"
+    python create_summarized_video.py "Cooking.mp4" "Scuba.mp4"
 > Tên 25 Video trong Thư mục `videos`  
     1. Air_Force_One.mp4  
     2. Base jumping.mp4  
