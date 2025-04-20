@@ -3,6 +3,7 @@ from utils import generate_summary
 
 
 # With shots based on KnapSack
+# Tính toán bản tóm tắt từ các đoạn video bằng thuật toán balo (Knapsack)
 def calculateSummary(scores, segments, length, video_length,
                      fill_mode, expand):
     length = int(length)
@@ -13,7 +14,7 @@ def calculateSummary(scores, segments, length, video_length,
                             fill_mode=fill_mode,
                             key_length=key_length)
 
-
+# Chọn keyframe và mở rộng vùng xung quanh để tạo bản tóm tắt
 def computeSummary(scores, keyframe_indices, length, video_length, expand):
     try:
         length = int(length)
@@ -79,7 +80,7 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
     # print(summary)
     return summary
 
-
+# Đánh giá bản tóm tắt bằng cách so sánh với bản tóm tắt của người dùng
 def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
                     coef, mode, fill_mode, expand):
     f_scores = []
@@ -95,7 +96,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
     for user in range(user_summary.shape[1]):
         user_selected = np.where(user_summary[:, user] > 0)[0]
         
-        if mode == 'frame':
+        if mode == 'frame': # Chế độ đánh giá theo từng khung hình (frame-level)
             length = len(user_selected)
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
@@ -107,7 +108,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
             tp = len(np.intersect1d(machine_selected, user_selected))
             fp = len(np.setdiff1d(machine_selected, user_selected))
             fn = len(np.setdiff1d(user_selected, machine_selected))
-        elif mode == 'fragment':
+        elif mode == 'fragment': # Chế độ đánh giá theo đoạn (fragment-level)
             user_fragments = np.unique(user_summary[:, user])
             length = len(user_fragments)
             machine_selected = computeSummary(scores=scores,
@@ -123,7 +124,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
             tp = len(np.unique(user_summary[intersected_indices, user]))
             fp = len(np.unique(user_summary[machine_selected, user])) - tp
             fn = len(np.unique(user_summary[user_selected, user])) - tp
-        elif mode == 'shot':
+        elif mode == 'shot': # Chế độ đánh giá theo đoạn video (shot-level)
             length = len(user_selected)
             
             machine_summary = calculateSummary(scores=scores,

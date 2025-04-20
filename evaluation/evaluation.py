@@ -8,7 +8,7 @@ from scipy.io import loadmat
 import h5py
 from evaluator import evaluateSummary
 
-
+# Hàm đánh giá các bản tóm tắt đã sinh ra so với groundtruth
 def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
                       coef, mode, expand):
     assert mode != 'shot', 'Shot-based evaluation is not supported yet.'
@@ -98,7 +98,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         
     return None, f_measure, top_5_avg
 
-
+# Hàm test các bản tóm tắt theo tập test đã chia
 def testSummaries(groundtruth_folder, summary_folder, result_folder,
                   coef, mode, fill_mode, expand):
     assert mode != 'fragment', 'Fragment-based testing is not supported yet.'
@@ -246,7 +246,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         
     return max_f_measure, avg_f_measure, top_5_avg
 
-
+# Hàm chính để chạy chương trình đánh giá từ dòng lệnh
 def evaluate():
     parser = argparse.ArgumentParser(description='Evaluate machine learning algorithm summaries.')
     
